@@ -1,0 +1,282 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArtPlaceholder from '../components/ArtPlaceholder.astro';
+---
+
+<Layout
+  title="Monster Book | Eat their hearts out!"
+  description="Monster Book is the fast, funny, spooky card game where the victory points are real candy, and you can eat your opponents' points."
+>
+  <section class="hero">
+    <div class="container">
+      <h1>Eat their hearts out!</h1>
+      <p class="hero__subhead">
+        Monster Book is the fast, funny, spooky card game where the victory
+        points are real candy, and you can eat your opponents' points.
+      </p>
+      <ul class="badges" aria-label="Game facts">
+        <li>2-4 players</li>
+        <li>Ages 10+</li>
+        <li><span class="todo">TODO: 45-90 mins</span></li>
+      </ul>
+      <div class="hero__actions">
+        <!-- TODO: Kickstarter URL -->
+        <a class="button button--primary" href="#">Support us on Kickstarter!</a>
+        <a class="button button--secondary" href="#how-it-works">See how it works</a>
+      </div>
+      <div class="hero__art">
+        <ArtPlaceholder label="TODO: hero art" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2>How it works in 3 steps</h2>
+      <ol class="steps">
+        <li class="step">
+          <h3>1. Wake your monsters</h3>
+          <p>
+            Ghosts, Mad Scientists, Pumpkins, Skeletons, Vampires, Werewolves,
+            and Witches are ready to cause trouble. Everyone gets a randomized
+            deck of monsters and the tricks they can pull.
+          </p>
+        </li>
+        <li class="step">
+          <h3>2. Trick or treat</h3>
+          <p>
+            Send a monster to treat and grab candy from the bowl, or to trick
+            and mess with your opponents, including eating their candy. Either
+            way, the monster gets tired out: rotate the card 90 degrees
+            counter-clockwise.
+          </p>
+        </li>
+        <li class="step">
+          <h3>3. Eat your way to victory</h3>
+          <p>
+            Everyone starts with 10 candy. Collect 31 to win, or be the last
+            player standing. Run out of candy and you're out of the game.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band band--candy">
+    <div class="container band__inner">
+      <h2>Real candy. Or cardboard tokens.</h2>
+      <p>
+        Play with your favorite small candy, like jelly beans or Pez, and
+        physically eat your opponents' points. Prefer to skip the sugar? The
+        box includes cardboard candy tokens. (Don't eat the cardboard!) Candy
+        is not included, so grab a bag on your way to game night.
+      </p>
+    </div>
+  </section>
+
+  <section class="band band--tone">
+    <div class="container band__inner band__inner--split">
+      <div>
+        <h2>Cute until it isn't.</h2>
+        <p>
+          Goofy monsters with silly tricks sit right next to a genuinely creepy
+          werewolf and a vampire who means business. Monster Book gives you
+          both. <span class="todo">TODO: pair this with card art from the gallery.</span>
+        </p>
+      </div>
+      <div class="band__art">
+        <ArtPlaceholder label="TODO: silly card art" ratio="3 / 4" />
+        <ArtPlaceholder label="TODO: creepy card art" ratio="3 / 4" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery-teaser">
+    <div class="container">
+      <h2>Meet the monsters</h2>
+      <p>Seven monster types. Plenty of mischief.</p>
+      <div class="gallery-teaser__art">
+        <ArtPlaceholder label="TODO: monster card art 1" ratio="3 / 4" />
+        <ArtPlaceholder label="TODO: monster card art 2" ratio="3 / 4" />
+        <ArtPlaceholder label="TODO: monster card art 3" ratio="3 / 4" />
+      </div>
+      <!-- Placeholder link: the gallery page doesn't exist yet. -->
+      <a class="button button--secondary" href="#">See all cards</a>
+    </div>
+  </section>
+
+  <section class="section find" id="find-monster-book">
+    <div class="container">
+      <h2>Find Monster Book</h2>
+      <p>
+        <span class="todo">TODO</span> (buy or pre-order links). Game and hobby
+        shops: bundle a small pack of candy with Monster Book and give your
+        customers everything they need for game night. Contact us about
+        carrying the game.
+        <span class="todo">TODO: retailer contact or wholesale link.</span>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: var(--space-8) var(--space-7);
+    text-align: center;
+    background: radial-gradient(
+      ellipse at top,
+      rgb(106 27 154 / 0.55),
+      var(--color-bg) 70%
+    );
+  }
+
+  .hero h1 {
+    color: var(--color-orange);
+  }
+
+  .hero__subhead {
+    max-width: 40rem;
+    margin-inline: auto;
+    font-size: var(--text-lg);
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: var(--space-5) 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .badges li {
+    padding: var(--space-1) var(--space-3);
+    border: 2px solid var(--color-purple);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--space-5);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 2px solid var(--color-purple);
+    border-radius: var(--radius);
+  }
+
+  .step h3 {
+    color: var(--color-green);
+  }
+
+  .step p {
+    margin-bottom: 0;
+  }
+
+  .band {
+    padding-block: var(--space-8);
+  }
+
+  .band__inner {
+    max-width: 48rem;
+  }
+
+  .band p {
+    font-size: var(--text-lg);
+    margin-bottom: 0;
+  }
+
+  .band--candy {
+    background: var(--color-purple);
+    color: var(--color-text);
+  }
+
+  .band--tone {
+    background: var(--color-surface);
+    border-block: 2px solid var(--color-purple);
+  }
+
+  .band--tone h2 {
+    color: var(--color-orange);
+  }
+
+  .hero__art {
+    max-width: 40rem;
+    margin: var(--space-6) auto 0;
+  }
+
+  .band__art,
+  .gallery-teaser__art {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .band__art {
+    margin-top: var(--space-5);
+  }
+
+  .gallery-teaser__art {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 36rem;
+    margin: var(--space-5) auto var(--space-6);
+  }
+
+  .gallery-teaser {
+    text-align: center;
+  }
+
+  .gallery-teaser h2 {
+    color: var(--color-green);
+  }
+
+  .find {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 48em) {
+    .hero {
+      padding-block: var(--space-9) var(--space-8);
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      justify-content: center;
+      max-width: none;
+    }
+
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .band__inner--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-7);
+      max-width: var(--content-width);
+    }
+
+    .band__art {
+      margin-top: 0;
+    }
+  }
+</style>

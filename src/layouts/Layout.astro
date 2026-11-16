@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Monster Book" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <!-- TODO: favicon, og:image (share image needs card/logo art) -->
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__name" href="/">Monster Book</a>
+        <nav aria-label="Main">
+          <ul class="site-nav">
+            <li><a href="/#how-it-works">How it works</a></li>
+            <!-- Placeholder links: these pages don't exist yet. -->
+            <li><a href="#">Cards</a></li>
+            <li><a href="#">Where to buy</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="site-footer__line">
+          Monster Book · <span class="todo">TODO: publisher/company name</span> ·
+          <span class="todo">TODO: social links</span>
+        </p>
+        <p class="site-footer__note">
+          Please choose candy that works for everyone at the table, or use the
+          cardboard tokens.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg);
+    border-bottom: 2px solid var(--color-purple);
+  }
+
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+    min-height: var(--header-height);
+    padding-block: var(--space-2);
+  }
+
+  .site-header__name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--text-xl);
+    color: var(--color-orange);
+    text-decoration: none;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav a {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    color: var(--color-green);
+    text-decoration: underline;
+  }
+
+  .site-footer {
+    padding-block: var(--space-7);
+    background: var(--color-purple);
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  .site-footer__line {
+    font-weight: 700;
+  }
+
+  .site-footer__note {
+    max-width: 40rem;
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+</style>
