@@ -30,12 +30,12 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
     </div>
   </section>
 
-  <section class="section" id="how-it-works">
+  <section class="section section--alt" id="how-it-works">
     <div class="container">
       <h2>How it works in 3 steps</h2>
       <ol class="steps">
         <li class="step">
-          <h3>1. Wake your monsters</h3>
+          <h3><span class="step__num">1.</span> Wake your monsters</h3>
           <p>
             Ghosts, Mad Scientists, Pumpkins, Skeletons, Vampires, Werewolves,
             and Witches are ready to cause trouble. Everyone gets a randomized
@@ -43,7 +43,7 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
           </p>
         </li>
         <li class="step">
-          <h3>2. Trick or treat</h3>
+          <h3><span class="step__num">2.</span> Trick or treat</h3>
           <p>
             Send a monster to treat and grab candy from the bowl, or to trick
             and mess with your opponents, including eating their candy. Either
@@ -52,7 +52,7 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
           </p>
         </li>
         <li class="step">
-          <h3>3. Eat your way to victory</h3>
+          <h3><span class="step__num">3.</span> Eat your way to victory</h3>
           <p>
             Everyone starts with 10 candy. Collect 31 to win, or be the last
             player standing. Run out of candy and you're out of the game.
@@ -91,7 +91,7 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
     </div>
   </section>
 
-  <section class="section gallery-teaser">
+  <section class="section section--alt gallery-teaser">
     <div class="container">
       <h2>Meet the monsters</h2>
       <p>Seven monster types. Plenty of mischief.</p>
@@ -120,18 +120,22 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
 </Layout>
 
 <style>
+  /* Hero: purple + orange glow behind the headline */
   .hero {
     padding-block: var(--space-8) var(--space-7);
     text-align: center;
-    background: radial-gradient(
-      ellipse at top,
-      rgb(106 27 154 / 0.55),
-      var(--color-bg) 70%
-    );
+    background:
+      radial-gradient(ellipse 55% 40% at 50% 22%, rgb(255 106 0 / 0.22), transparent 70%),
+      radial-gradient(ellipse 90% 70% at 50% 15%, rgb(106 27 154 / 0.5), transparent 75%),
+      var(--color-bg);
   }
 
   .hero h1 {
     color: var(--color-orange);
+    text-shadow:
+      0 0 18px rgb(255 106 0 / 0.55),
+      0 0 48px rgb(255 106 0 / 0.3),
+      0 3px 0 rgb(0 0 0 / 0.35);
   }
 
   .hero__subhead {
@@ -151,11 +155,12 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
   }
 
   .badges li {
-    padding: var(--space-1) var(--space-3);
+    padding: var(--space-1) var(--space-4);
+    background: rgb(106 27 154 / 0.3);
     border: 2px solid var(--color-purple);
     border-radius: 999px;
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .hero__actions {
@@ -167,6 +172,12 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
     margin-inline: auto;
   }
 
+  .hero__art {
+    max-width: 40rem;
+    margin: var(--space-6) auto 0;
+  }
+
+  /* How it works: card-style steps with a large numbered badge */
   .steps {
     display: grid;
     gap: var(--space-5);
@@ -177,19 +188,35 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
 
   .step {
     padding: var(--space-5);
-    background: var(--color-surface);
+    background: var(--color-bg);
     border: 2px solid var(--color-purple);
     border-radius: var(--radius);
   }
 
   .step h3 {
-    color: var(--color-green);
+    color: var(--color-text);
+  }
+
+  .step__num {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: var(--space-3);
+    background: var(--color-purple);
+    border: 2px solid var(--color-green);
+    border-radius: 50%;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
   }
 
   .step p {
     margin-bottom: 0;
   }
 
+  /* Bands */
   .band {
     padding-block: var(--space-8);
   }
@@ -204,22 +231,23 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
   }
 
   .band--candy {
-    background: var(--color-purple);
-    color: var(--color-text);
+    background: var(--color-bg);
+    text-align: center;
   }
 
+  /* Silly meets scary: green glow so the tone shift is obvious */
   .band--tone {
-    background: var(--color-surface);
-    border-block: 2px solid var(--color-purple);
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #0e1a14 0%, var(--color-bg) 55%, #0e1a14 100%);
+    border-block: 3px solid var(--color-green);
+    box-shadow:
+      inset 0 0 80px rgb(126 211 33 / 0.14),
+      0 0 36px rgb(126 211 33 / 0.25);
   }
 
   .band--tone h2 {
-    color: var(--color-orange);
-  }
-
-  .hero__art {
-    max-width: 40rem;
-    margin: var(--space-6) auto 0;
+    text-shadow: 0 0 22px rgb(126 211 33 / 0.4);
   }
 
   .band__art,
@@ -233,23 +261,38 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
     margin-top: var(--space-5);
   }
 
+  /* Gallery teaser */
+  .gallery-teaser {
+    text-align: center;
+  }
+
   .gallery-teaser__art {
     grid-template-columns: repeat(3, 1fr);
     max-width: 36rem;
     margin: var(--space-5) auto var(--space-6);
   }
 
-  .gallery-teaser {
-    text-align: center;
+  /* Find Monster Book: keep the background full width, narrow the text */
+  .find > .container {
+    max-width: 52rem;
   }
 
-  .gallery-teaser h2 {
-    color: var(--color-green);
+  .find p {
+    font-size: var(--text-lg);
+    margin-bottom: 0;
   }
 
-  .find {
-    max-width: 48rem;
-    margin-inline: auto;
+  @media (prefers-reduced-motion: no-preference) {
+    .step {
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgb(106 27 154 / 0.5);
+    }
   }
 
   @media (min-width: 48em) {
