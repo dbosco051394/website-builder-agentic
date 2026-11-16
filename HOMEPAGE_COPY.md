@@ -7,7 +7,7 @@
 victory points are real candy, and you can eat your opponents' points.
 
 **Badges (small row under the subhead):**
-2-4 players · Ages 10+ · TODO: 45-90 mins
+2-4 players · Ages 10+ · Playtime: 45-90 mins
 
 **Primary button:** Support us on Kickstarter!
 **Secondary button:** See how it works (scrolls to the section below)

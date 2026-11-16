@@ -28,7 +28,15 @@ const { title, description } = Astro.props;
   <body>
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="site-header__name" href="/">Monster Book</a>
+        <a class="site-header__logo" href="/">
+          <img
+            src="/assets/title.png"
+            alt="Monster Book home"
+            width="247"
+            height="176"
+            decoding="async"
+          />
+        </a>
         <nav aria-label="Main">
           <ul class="site-nav">
             <li><a href="/#how-it-works">How it works</a></li>
@@ -78,12 +86,14 @@ const { title, description } = Astro.props;
     padding-block: var(--space-2);
   }
 
-  .site-header__name {
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: var(--text-xl);
-    color: var(--color-orange);
-    text-decoration: none;
+  .site-header__logo {
+    display: block;
+    line-height: 0;
+  }
+
+  .site-header__logo img {
+    width: auto;
+    height: 4rem; /* header = logo + padding, matches --header-height */
   }
 
   .site-nav {

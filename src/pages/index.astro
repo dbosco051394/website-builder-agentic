@@ -1,11 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ArtPlaceholder from '../components/ArtPlaceholder.astro';
 import cards from '../data/cards.json';
 
 // Cards featured in the "Cute until it isn't." band
 const sillyCard = cards.find((card) => card.id === 'skeleton-01'); // Numbskull
 const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving Beast
+
+// Cards featured in the "Meet the monsters" teaser
+const teaserCards = ['mad-science-01', 'witch-01', 'ghost-01'] // Franken Monkey, Bog Witch, Lady in White
+  .map((id) => cards.find((card) => card.id === id))
+  .filter((card) => card !== undefined);
 ---
 
 <Layout
@@ -22,15 +26,22 @@ const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving B
       <ul class="badges" aria-label="Game facts">
         <li>2-4 players</li>
         <li>Ages 10+</li>
-        <li><span class="todo">TODO: 45-90 mins</span></li>
+        <li>Playtime: 45-90 mins</li>
       </ul>
+      <div class="hero__art">
+        <img
+          src="/assets/hero.png"
+          alt="The Monster Book logo above three monster characters: a pale ghost with purple eyes in the middle, a green-haired girl in a black dress on the left, and a curly-haired pumpkin girl with glowing eyes on the right."
+          width="337"
+          height="441"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
       <div class="hero__actions">
         <!-- TODO: Kickstarter URL -->
         <a class="button button--primary" href="#">Support us on Kickstarter!</a>
         <a class="button button--secondary" href="#how-it-works">See how it works</a>
-      </div>
-      <div class="hero__art">
-        <ArtPlaceholder label="TODO: hero art" />
       </div>
     </div>
   </section>
@@ -113,9 +124,18 @@ const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving B
       <h2>Meet the monsters</h2>
       <p>Seven monster types. Plenty of mischief.</p>
       <div class="gallery-teaser__art">
-        <ArtPlaceholder label="TODO: monster card art 1" ratio="3 / 4" />
-        <ArtPlaceholder label="TODO: monster card art 2" ratio="3 / 4" />
-        <ArtPlaceholder label="TODO: monster card art 3" ratio="3 / 4" />
+        {
+          teaserCards.map((card) => (
+            <img
+              src={card.image}
+              alt={card.alt}
+              width="447"
+              height="595"
+              loading="lazy"
+              decoding="async"
+            />
+          ))
+        }
       </div>
       <a class="button button--secondary" href="/cards">See all cards</a>
     </div>
@@ -189,8 +209,13 @@ const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving B
   }
 
   .hero__art {
-    max-width: 40rem;
-    margin: var(--space-6) auto 0;
+    max-width: 21rem; /* hero.png is 337px wide; don't upscale it */
+    margin: var(--space-6) auto;
+  }
+
+  .hero__art img {
+    width: 100%;
+    height: auto;
   }
 
   /* How it works: card-style steps with a large numbered badge */
@@ -277,7 +302,8 @@ const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving B
     margin-top: var(--space-5);
   }
 
-  .band__art img {
+  .band__art img,
+  .gallery-teaser__art img {
     width: 100%;
     height: auto;
     border: 2px solid var(--color-purple);
