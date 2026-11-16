@@ -5,9 +5,8 @@
     "monster": "Werewolf",
     "type": "Monster",
     "effect": "Hungry x2 (I eat 4 candies instead of 1.)",
-    "image": "/assets/cards/starving-beast-01.png",
-    "alt": "A crazed, starving werewolf beast with sharp claws and fangs, and black ichor drooling from it's mouth.",
-    "tone": "scary"
+    "image": "/assets/cards/Starving-Beast-01.png",
+    "alt": "A crazed, starving werewolf beast with sharp claws and fangs, and black ichor drooling from it's mouth."
   },
   {
     "id": "vampire-01",
@@ -16,8 +15,7 @@
     "type": "Monster",
     "effect": "Thirsty (I steal strength and candy from my fights.)\nPlay/Trick: Steal 2 Candies.",
     "image": "/assets/cards/Duchess-Nosfyra-01.png",
-    "alt": "A tall, bald vampiress with sharp, unnaturally long fingers.",
-    "tone": "scary"
+    "alt": "A tall, bald vampiress with sharp, unnaturally long fingers."
   },
   {
     "id": "ghost-01",
@@ -26,8 +24,7 @@
     "type": "Monster",
     "effect": "Intangible (Damage dealt to me is reduced to one.)\nTrick/Treat: Heal all damage from a monster.",
     "image": "/assets/cards/Lady-In-White-01.png",
-    "alt": "A pale ghost of a young cordial-looking girl with somber, purple glowing eyes.",
-    "tone": "scary"
+    "alt": "A pale ghost of a young cordial-looking girl with somber, purple glowing eyes."
   },
   {
     "id": "mad-science-01",
@@ -36,8 +33,7 @@
     "type": "Monster",
     "effect": "Specimen (When I die, bookmark me face-up.)\nDies: Deal 4 damage to a monster.",
     "image": "/assets/cards/Franken-Monkey-01.png",
-    "alt": "A grotesque monkey stitched together with various body parts, with an exposed brain and a mechanical tail.",
-    "tone": "silly"
+    "alt": "A grotesque monkey stitched together with various body parts, with an exposed brain and a mechanical tail."
   },
   {
     "id": "witch-01",
@@ -46,8 +42,7 @@
     "type": "Monster",
     "effect": "Tricky (I can play tricks of any class.)\nWhen you play a trick, create a Toad.",
     "image": "/assets/cards/Bog-Witch-01.png",
-    "alt": "A young, silly witch girl riding a broomstick casually with a her toad (harold) popping out of her bag.",
-    "tone": "silly"
+    "alt": "A young, silly witch girl riding a broomstick casually with a her toad (harold) popping out of her bag."
   },
   {
     "id": "skeleton-01",
@@ -56,8 +51,7 @@
     "type": "Monster",
     "effect": "Reassemble (When I die, create a Bone Pile.)\nPlay: Discard all of your bookmarks. Get that much candy.",
     "image": "/assets/cards/Numbskull-01.png",
-    "alt": "A skull with a slushie lid on it's head, full of red slushie. It's experiencing a brainfreeze.",
-    "tone": "silly"
+    "alt": "A skull with a slushie lid on it's head, full of red slushie. It's experiencing a brainfreeze."
   },
   {
     "id": "pumpkin-01",
@@ -66,7 +60,6 @@
     "type": "Monster",
     "effect": "Friendly (I deal no damage.)\nDies: Create 2 Jack O' Lanterns.",
     "image": "/assets/cards/Nesting-Jack-01.png",
-    "alt": "A jovial purple skeleton wearing a Jack O' Lantern on its head, popping out of a bigger, green Jack O' Lantern.",
-    "tone": "silly"
+    "alt": "A jovial purple skeleton wearing a Jack O' Lantern on its head, popping out of a bigger, green Jack O' Lantern."
   }
 ]

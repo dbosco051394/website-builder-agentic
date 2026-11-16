@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CardTile from '../components/CardTile.astro';
+import cards from '../data/cards.json';
+
+// Filters are built from the data, so new cards and monster types appear automatically.
+const isTodo = (value?: string) => !value?.trim() || value.trim().startsWith('TODO');
+const unique = (values: (string | undefined)[]) =>
+  [...new Set(values.filter((v): v is string => !isTodo(v)))].sort();
+
+const monsters = unique(cards.map((card) => card.monster));
+
+// Images in the first row load right away; the rest are lazy-loaded
+const EAGER_COUNT = 4;
+---
+
+<Layout
+  title="Cards | Monster Book"
+  description="Browse the Monster Book cards: the monsters and the tricks they can pull."
+>
+  <section class="section cards-page">
+    <div class="container">
+      <h1>All cards</h1>
+
+      <!-- Hidden until the script runs, so the page works without JavaScript -->
+      <div class="filters" data-filters hidden>
+        <button type="button" class="filter" data-group="all" aria-pressed="true">All</button>
+
+        <div class="filters__group" role="group" aria-labelledby="filter-monster-label">
+          <span class="filters__label" id="filter-monster-label">Monster</span>
+          {
+            monsters.map((monster) => (
+              <button
+                type="button"
+                class="filter"
+                data-group="monster"
+                data-value={monster}
+                aria-pressed="false"
+              >
+                {monster}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <p class="status" data-status role="status"></p>
+
+      <ul class="card-grid">
+        {
+          cards.map((card, index) => (
+            <li data-card data-monster={card.monster}>
+              <CardTile card={card} eager={index < EAGER_COUNT} />
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="empty" data-empty hidden>No cards match these filters.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cards-page h1 {
+    font-size: var(--text-3xl);
+  }
+
+  /* Filter bar */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+
+  .filters[hidden] {
+    display: none;
+  }
+
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .filters__label {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .filter {
+    min-height: var(--tap-target);
+    padding: var(--space-2) var(--space-4);
+    background: transparent;
+    border: 2px solid var(--color-purple);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  .filter:hover {
+    background: var(--color-purple);
+  }
+
+  /* Active filter: filled orange plus a checkmark, so it isn't shown by color alone */
+  .filter[aria-pressed='true'] {
+    background: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-bg);
+  }
+
+  .filter[aria-pressed='true']::before {
+    content: '\2713\00a0' / '';
+  }
+
+  .status {
+    min-height: 1.6em;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .empty {
+    font-size: var(--text-lg);
+  }
+
+  /* Card grid: 1 column on mobile, 2 tablet, 3 desktop, 4 wide desktop */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card-grid > [hidden] {
+    display: none;
+  }
+
+  @media (min-width: 40em) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64em) {
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 72em) {
+    .card-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-filters]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-card]')];
+  const status = document.querySelector<HTMLElement>('[data-status]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  if (bar && status && empty) {
+    const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button')];
+    let activeMonster = '';
+
+    const update = () => {
+      let shown = 0;
+      for (const item of items) {
+        const match = !activeMonster || item.dataset.monster === activeMonster;
+        item.hidden = !match;
+        if (match) shown++;
+      }
+
+      for (const button of buttons) {
+        const { group, value } = button.dataset;
+        const pressed = group === 'all' ? !activeMonster : activeMonster === value;
+        button.setAttribute('aria-pressed', String(pressed));
+      }
+
+      status.textContent = `Showing ${shown} of ${items.length} cards`;
+      empty.hidden = shown > 0;
+    };
+
+    bar.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('button');
+      if (!button) return;
+
+      const { group, value = '' } = button.dataset;
+      if (group === 'all') {
+        activeMonster = '';
+      } else if (group === 'monster') {
+        // Clicking the active filter turns it off
+        activeMonster = activeMonster === value ? '' : value;
+      }
+      update();
+    });
+
+    bar.hidden = false;
+    update();
+  }
+</script>

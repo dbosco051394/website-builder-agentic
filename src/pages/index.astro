@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArtPlaceholder from '../components/ArtPlaceholder.astro';
+import cards from '../data/cards.json';
+
+// Cards featured in the "Cute until it isn't." band
+const sillyCard = cards.find((card) => card.id === 'skeleton-01'); // Numbskull
+const scaryCard = cards.find((card) => card.id === 'werewolf-01'); // Starving Beast
 ---
 
 <Layout
@@ -81,12 +86,24 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
         <p>
           Goofy monsters with silly tricks sit right next to a genuinely creepy
           werewolf and a vampire who means business. Monster Book gives you
-          both. <span class="todo">TODO: pair this with card art from the gallery.</span>
+          both.
         </p>
       </div>
       <div class="band__art">
-        <ArtPlaceholder label="TODO: silly card art" ratio="3 / 4" />
-        <ArtPlaceholder label="TODO: creepy card art" ratio="3 / 4" />
+        {
+          [sillyCard, scaryCard].map((card) =>
+            card ? (
+              <img
+                src={card.image}
+                alt={card.alt}
+                width="447"
+                height="595"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : null
+          )
+        }
       </div>
     </div>
   </section>
@@ -100,8 +117,7 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
         <ArtPlaceholder label="TODO: monster card art 2" ratio="3 / 4" />
         <ArtPlaceholder label="TODO: monster card art 3" ratio="3 / 4" />
       </div>
-      <!-- Placeholder link: the gallery page doesn't exist yet. -->
-      <a class="button button--secondary" href="#">See all cards</a>
+      <a class="button button--secondary" href="/cards">See all cards</a>
     </div>
   </section>
 
@@ -259,6 +275,13 @@ import ArtPlaceholder from '../components/ArtPlaceholder.astro';
 
   .band__art {
     margin-top: var(--space-5);
+  }
+
+  .band__art img {
+    width: 100%;
+    height: auto;
+    border: 2px solid var(--color-purple);
+    border-radius: var(--radius);
   }
 
   /* Gallery teaser */
